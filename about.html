@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About CEO - ZCUBIC ENGINEERING PVT LTD</title>
+    <style>
+        :root {
+            --primary: #2563eb;      /* Releta Blue */
+            --secondary: #7c3aed;    /* Releta Purple */
+            --accent: #06b6d4;       /* Releta Cyan */
+            --light: #f8fafc;        /* Light background */
+            --dark: #1e293b;         /* Dark text */
+            --gray: #64748b;         /* Gray text */
+            --success: #10b981;      /* Green */
+            --gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .floating-shapes {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .shape {
+            position: absolute;
+            background: var(--gradient);
+            opacity: 0.05;
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+        
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            top: -200px;
+            right: -200px;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -150px;
+            left: -150px;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .hero-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .nav-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+        }
+        
+        .ceo-profile {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .ceo-profile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+        
+        .ceo-image {
+            flex: 1;
+            min-width: 350px;
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f0f9ff 0%, #faf5ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ceo-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%232563eb' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .profile-frame {
+            position: relative;
+            width: 280px;
+            height: 350px;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+            border: 8px solid white;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .profile-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .profile-frame:hover img {
+            transform: scale(1.05);
+        }
+        
+        .profile-badge {
+            position: absolute; 
+            bottom: -20px;
+            right: -20px;
+            background: var(--gradient);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
+        
+        .ceo-details {
+            flex: 2;
+            min-width: 300px;
+            padding: 3rem;
+        }
+        
+        .ceo-header {
+            margin-bottom: 2rem;
+        }
+        
+        .ceo-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .ceo-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .ceo-title::before {
+            content: '▹';
+            color: var(--accent);
+        }
+        
+        .education-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #f8fafc 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .education-card:hover {
+            transform: translateX(10px);
+        }
+        
+        .education-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: var(--primary);
+            opacity: 0.1;
+        }
+        
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .exp-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .exp-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--gradient);
+            transition: height 0.3s ease;
+        }
+        
+        .exp-card:hover::before {
+            height: 100%;
+        }
+        
+        .exp-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1);
+        }
+        
+        .exp-icon {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .social-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+            transition: 0.5s;
+        }
+        
+        .social-btn:hover::before {
+            left: 100%;
+        }
+        
+        .social-btn:hover {
+            background: var(--light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .social-btn.linkedin {
+            background: #0a66c2;
+            color: white;
+            border-color: #0a66c2;
+        }
+        
+        .social-btn.linkedin:hover {
+            background: #004182;
+        }
+        
+        .achievements {
+            display: flex;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .achievement-item {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease;
+        }
+        
+        .achievement-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .achievement-number {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .ceo-profile {
+                flex-direction: column;
+            }
+            
+            .ceo-image, .ceo-details {
+                padding: 2rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .ceo-name {
+                font-size: 2rem;
+            }
+            
+            .profile-frame {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .achievements {
+                flex-direction: column;
+            }
+            
+            .nav-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+    
+    <nav class="nav-container">
+        <div class="nav-content">
+            <a href="#" class="nav-logo">ZCUBIC ENGINEERING</a>
+            <a href="AI tool.html" class="home-btn">
+                <i class="fas fa-home"></i> Back to AI Tools
+            </a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="hero-section">
+            <h1 class="hero-title">Meet Our CEO</h1>
+            <p class="hero-subtitle">Leading innovation with expertise, vision, and dedication to engineering excellence</p>
+        </div>
+        
+        <div class="ceo-profile">
+            <div class="ceo-image">
+                <div class="profile-frame">
+                    <img src="CEO.png" alt="Zeeshan Mumtaz, CEO of ZCUBIC ENGINEERING">
+                </div>
+                
+            </div>
+            
+            <div class="ceo-details">
+                <div class="ceo-header">
+                    <h1 class="ceo-name">Zeeshan Mumtaz</h1>
+                    <div class="ceo-title">Chief Executive Officer</div>
+                </div>
+                
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <strong style="color: var(--primary); font-size: 1.1rem;">B.Sc. Industrial Engineering</strong><br>
+                    <span style="color: var(--dark);">University of Engineering and Technology, Peshawar</span><br>
+                    <small style="color: var(--gray); display: block; margin-top: 0.5rem;">
+                        Specialized in Operations Management & Supply Chain Optimization
+                    </small>
+                </div>
+                
+                <p style="margin: 1.5rem 0; color: var(--dark); line-height: 1.8;">
+                    I am Zeeshan Mumtaz, a dedicated Industrial Engineering professional with extensive hands-on experience in warehouse control, inventory management, and operational optimization. My passion lies in creating efficient systems that drive business success.
+                </p>
+                
+                <div class="achievements">
+                    <div class="achievement-item">
+                        <div class="achievement-number">2+</div>
+                        <div style="color: var(--gray); font-size: 0.9rem;">Years Experience</div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-number">50+</div>
+                        <div style="color: var(--gray); font-size: 0.9rem;">Projects</div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-number">100%</div>
+                        <div style="color: var(--gray); font-size: 0.9rem;">Client Satisfaction</div>
+                    </div>
+                </div>
+                
+                <h2 style="color: var(--dark); margin: 2rem 0 1rem; font-size: 1.5rem;">Professional Expertise</h2>
+                
+                <div class="experience-grid">
+                    <div class="exp-card">
+                        <div class="exp-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h4 style="color: var(--dark); margin-bottom: 0.5rem;">SAP ERP Specialist</h4>
+                        <p style="color: var(--gray); font-size: 0.9rem;">
+                            Expert in stock handling, receiving, issuing, and cycle counts with SAP ERP systems
+                        </p>
+                    </div>
+                    
+                    <div class="exp-card">
+                        <div class="exp-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4 style="color: var(--dark); margin-bottom: 0.5rem;">Operational Efficiency</h4>
+                        <p style="color: var(--gray); font-size: 0.9rem;">
+                            Optimizing warehouse operations and inventory management processes
+                        </p>
+                    </div>
+                    
+                    <div class="exp-card">
+                        <div class="exp-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4 style="color: var(--dark); margin-bottom: 0.5rem;">Team Leadership</h4>
+                        <p style="color: var(--gray); font-size: 0.9rem;">
+                            Leading cross-functional teams to improve workflows and collaboration
+                        </p>
+                    </div>
+                    
+                    <div class="exp-card">
+                        <div class="exp-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4 style="color: var(--dark); margin-bottom: 0.5rem;">HSE Compliance</h4>
+                        <p style="color: var(--gray); font-size: 0.9rem;">
+                            Ensuring safety standards and regulatory compliance in operations
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="social-section">
+                    <h3 style="color: var(--dark); margin-bottom: 1rem;">Connect with Zeeshan</h3>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/zeeshan-mumtaz-eme70/" class="social-btn linkedin" target="_blank">
+                            <i class="fab fa-linkedin-in"></i> LinkedIn Profile
+                        </a>
+                        <a href="mailto:qazizeeshan350@gmail.com" class="social-btn">
+                            <i class="fas fa-envelope"></i> Email
+                        </a>
+                        <a href="Zeeshan Mumtaz CV.pdf" class="social-btn">
+                            <i class="fas fa-file-pdf"></i> Download CV
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">ZCUBIC ENGINEERING PVT LTD</div>
+            <p style="opacity: 0.9; margin-bottom: 1rem;">
+                Innovating engineering solutions with AI-powered technology and expertise
+            </p>
+            <div class="footer-links">
+                <a href="AI tool.html">AI Tools</a>
+                
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.8; font-size: 0.9rem;">
+                &copy; 2025 ZCUBIC ENGINEERING PVT LTD. All rights reserved.<br>
+                Part of the Releta AI Ecosystem
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effect to education card
+            const eduCard = document.querySelector('.education-card');
+            if (eduCard) {
+                eduCard.addEventListener('mouseenter', () => {
+                    eduCard.style.transform = 'translateX(10px)';
+                });
+                
+                eduCard.addEventListener('mouseleave', () => {
+                    eduCard.style.transform = 'translateX(0)';
+                });
+            }
+            
+            // Add click animation to social buttons
+            const socialBtns = document.querySelectorAll('.social-btn');
+            socialBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    // Ripple effect
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        border-radius: 50%;
+                        background: rgba(255, 255, 255, 0.3);
+                        transform: scale(0);
+                        animation: ripple 0.6s linear;
+                        width: ${size}px;
+                        height: ${size}px;
+                        top: ${y}px;
+                        left: ${x}px;
+                    `;
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+            
+            // Add CSS for ripple animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple {
+                    to {
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Animate achievement numbers
+            const achievementNumbers = document.querySelectorAll('.achievement-number');
+            achievementNumbers.forEach(number => {
+                const target = parseInt(number.textContent);
+                let current = 0;
+                const increment = target / 30;
+                
+                const updateNumber = () => {
+                    current += increment;
+                    if (current < target) {
+                        number.textContent = Math.ceil(current) + '+';
+                        requestAnimationFrame(updateNumber);
+                    } else {
+                        number.textContent = target + '+';
+                    }
+                };
+                
+                // Start animation when element is in view
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateNumber();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                observer.observe(number.parentElement);
+            });
+            
+            // Parallax effect for floating shapes
+            window.addEventListener('mousemove', (e) => {
+                const shapes = document.querySelectorAll('.shape');
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+                
+                shapes.forEach((shape, index) => {
+                    const speed = index === 0 ? 0.5 : 0.3;
+                    const x = (mouseX * 100 * speed);
+                    const y = (mouseY * 100 * speed);
+                    shape.style.transform = `translate(${x}px, ${y}px)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

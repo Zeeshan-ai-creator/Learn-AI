@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools Directory - AI App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 30px 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+        }
+        
+        .logo h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .user-profile:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            color: #6a11cb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .user-name {
+            font-weight: 500;
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .page-title h1 {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            border-radius: 2px;
+        }
+        
+        /* AI Assistant Section */
+        .ai-assistant-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ai-assistant-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.1"><path d="M0,0 L100,0 L100,100 Z" fill="white"/></svg>');
+            background-size: cover;
+        }
+        
+        .ai-assistant-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ai-assistant-header i {
+            font-size: 2.5rem;
+            background: white;
+            color: #667eea;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ai-assistant-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .ai-input-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ai-input-container label {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        #userInput {
+            width: 100%;
+            padding: 20px;
+            border-radius: 15px;
+            border: none;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 120px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            transition: all 0.3s;
+        }
+        
+        #userInput:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ai-controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ai-btn {
+            padding: 15px 30px;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .ai-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .ai-btn.primary {
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        .ai-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .ai-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .ai-output-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            color: #333;
+            position: relative;
+            z-index: 1;
+            display: none;
+        }
+        
+        .ai-output-container h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        #aiOutput {
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+        
+        .ai-loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ai-loading i {
+            font-size: 2rem;
+            color: white;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .category-btn {
+            padding: 12px 25px;
+            background-color: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            font-weight: 600;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .category-btn:hover {
+            border-color: #6a11cb;
+            color: #6a11cb;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.1);
+        }
+        
+        .category-btn.active {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border-color: transparent;
+        }
+        
+        /* AI Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .tool-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tool-number {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            z-index: 2;
+        }
+        
+        .tool-icon {
+            height: 180px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #6a11cb;
+        }
+        
+        .tool-content {
+            padding: 25px;
+        }
+        
+        .tool-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .tool-category {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: #eef2ff;
+            color: #6a11cb;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .tool-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .tool-uses {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .tool-uses h4 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tool-uses p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .tool-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #6a11cb;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 8px 0;
+        }
+        
+        .tool-link:hover {
+            gap: 15px;
+            color: #2575fc;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo i {
+            font-size: 2rem;
+        }
+        
+        .footer-logo h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .footer-text {
+            color: #bdc3c7;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #6a11cb;
+        }
+        
+        .copyright {
+            color: #95a5a6;
+            font-size: 0.9rem;
+            border-top: 1px solid #34495e;
+            padding-top: 20px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .tools-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .page-title h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-filter {
+                gap: 10px;
+            }
+            
+            .category-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .ai-controls {
+                flex-direction: column;
+            }
+            
+            .ai-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header {
+                padding: 20px;
+            }
+            
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+            
+            .page-title h1 {
+                font-size: 1.8rem;
+            }
+            
+            .page-title p {
+                font-size: 1rem;
+            }
+            
+            .ai-assistant-section {
+                padding: 20px;
+            }
+            
+            .ai-assistant-header h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with User Profile -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <h1>AI App</h1>
+            </div>
+            
+            <div class="user-profile" id="userProfile">
+                <div class="user-avatar" id="userAvatar">U</div>
+                <div class="user-name" id="userName">User</div>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <div class="page-title">
+            <h1>AI Tools Directory</h1>
+            <p>Discover the most powerful AI tools for content creation, productivity, and creativity. Filter by category to find the perfect tool for your needs.</p>
+        </div>
+        
+        <!-- AI Assistant Section -->
+        <div class="ai-assistant-section">
+            <div class="ai-assistant-header">
+                <i class="fas fa-robot"></i>
+                <h2>AI Assistant</h2>
+            </div>
+            
+            <div class="ai-input-container">
+                <label>Ask me anything about AI tools, recommendations, or how to use them:</label>
+                <textarea id="userInput" rows="4" placeholder="Type your question here... Example: 'What AI tool is best for creating YouTube thumbnails?'"></textarea>
+            </div>
+            
+            <div class="ai-controls">
+                <button class="ai-btn primary" onclick="sendToAI()">
+                    <i class="fas fa-paper-plane"></i> Ask AI
+                </button>
+                <button class="ai-btn secondary" onclick="clearChat()">
+                    <i class="fas fa-eraser"></i> Clear
+                </button>
+                <button class="ai-btn secondary" onclick="showExampleQuestions()">
+                    <i class="fas fa-lightbulb"></i> Example Questions
+                </button>
+            </div>
+            
+            <div class="ai-loading" id="aiLoading">
+                <i class="fas fa-spinner"></i>
+                <p style="margin-top: 10px;">AI is thinking...</p>
+            </div>
+            
+            <div class="ai-output-container" id="aiOutputContainer">
+                <h3><i class="fas fa-comment"></i> Answer:</h3>
+                <div id="aiOutput"></div>
+            </div>
+        </div>
+        
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <button class="category-btn active" data-category="all">
+                <i class="fas fa-th"></i> All Tools
+            </button>
+            <button class="category-btn" data-category="writing">
+                <i class="fas fa-pen"></i> Writing & Content
+            </button>
+            <button class="category-btn" data-category="voice">
+                <i class="fas fa-microphone"></i> Voice & Audio
+            </button>
+            <button class="category-btn" data-category="video">
+                <i class="fas fa-video"></i> Video Creation
+            </button>
+            <button class="category-btn" data-category="image">
+                <i class="fas fa-image"></i> Image & Design
+            </button>
+            <button class="category-btn" data-category="productivity">
+                <i class="fas fa-tasks"></i> Productivity
+            </button>
+        </div>
+        
+        <!-- AI Tools Grid -->
+        <div class="tools-grid" id="toolsGrid">
+            <!-- Tool cards will be generated by JavaScript -->
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-robot"></i>
+                <h3>AI App Platform</h3>
+            </div>
+            
+            <p class="footer-text">
+                Your gateway to the world of artificial intelligence tools. Explore, discover, and create with the most advanced AI technologies available today.
+            </p>
+            
+            <div class="footer-links">
+                <a href="AI tool.html">Home</a>
+                <a href="profile.html">Create Profile</a>
+                <a href="about.html">About Us</a>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 AI App Platform. All rights reserved. | Designed for AI enthusiasts and creators Zeeshan Mumtaz.
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // AI Tools Data
+        const aiTools = [
+            {
+                id: 1,
+                name: "ChatGPT",
+                category: "writing",
+                icon: "fas fa-comments",
+                description: "Advanced conversational AI for script writing, content creation, and assistance.",
+                uses: "Video scripts, stories, study notes, assignments, coding help, and general Q&A.",
+                color: "#10a37f"
+            },
+            {
+                id: 2,
+                name: "Jasper AI",
+                category: "writing",
+                icon: "fas fa-bullhorn",
+                description: "AI-powered marketing assistant for creating engaging content and scripts.",
+                uses: "Content creation, ads, YouTube videos, blog posts, and marketing copy.",
+                color: "#000000"
+            },
+            {
+                id: 3,
+                name: "Copy.ai",
+                category: "writing",
+                icon: "fas fa-copy",
+                description: "Quick and efficient AI for generating short-form content and captions.",
+                uses: "Social media posts, ad copy, email subject lines, and quick captions.",
+                color: "#FF6B6B"
+            },
+            {
+                id: 4,
+                name: "Notion AI",
+                category: "productivity",
+                icon: "fas fa-sticky-note",
+                description: "AI integrated into Notion for enhanced note-taking and organization.",
+                uses: "Notes, summaries, student help, project planning, and content organization.",
+                color: "#000000"
+            },
+            {
+                id: 5,
+                name: "ElevenLabs",
+                category: "voice",
+                icon: "fas fa-wave-square",
+                description: "Cutting-edge voice synthesis for creating human-like narrations.",
+                uses: "Human-like voiceovers, audiobooks, narration, and voice cloning.",
+                color: "#00B894"
+            },
+            {
+                id: 6,
+                name: "Murf AI",
+                category: "voice",
+                icon: "fas fa-microphone-alt",
+                description: "Professional voiceover studio with diverse AI voices and emotions.",
+                uses: "Professional voiceovers for YouTube, videos, podcasts, and presentations.",
+                color: "#6C5CE7"
+            },
+            {
+                id: 7,
+                name: "Play.ht",
+                category: "voice",
+                icon: "fas fa-globe",
+                description: "Multilingual AI voice platform for educational and commercial content.",
+                uses: "Multilingual voices, educational content, IVR systems, and audiobooks.",
+                color: "#0984E3"
+            },
+            {
+                id: 8,
+                name: "Lovo.ai",
+                category: "voice",
+                icon: "fas fa-headphones",
+                description: "AI voice generation platform with expressive and customizable voices.",
+                uses: "AI-generated YouTube voices, podcasting, e-learning, and gaming voices.",
+                color: "#FF7675"
+            },
+            {
+                id: 9,
+                name: "Pictory AI",
+                category: "video",
+                icon: "fas fa-film",
+                description: "Transform scripts into engaging videos with automatic editing features.",
+                uses: "Script to video conversion, auto subtitles, scene creation, and video summaries.",
+                color: "#00CEC9"
+            },
+            {
+                id: 10,
+                name: "InVideo AI",
+                category: "video",
+                icon: "fas fa-play-circle",
+                description: "Intelligent video creation platform for social media and marketing.",
+                uses: "YouTube videos, social media content, marketing videos, and presentations.",
+                color: "#FD79A8"
+            },
+            {
+                id: 11,
+                name: "Synthesia",
+                category: "video",
+                icon: "fas fa-user-tie",
+                description: "Create videos with AI avatars that speak in multiple languages.",
+                uses: "Talking human avatars, faceless videos, training videos, and presentations.",
+                color: "#00B894"
+            },
+            {
+                id: 12,
+                name: "HeyGen",
+                category: "video",
+                icon: "fas fa-video",
+                description: "AI avatar platform for creating personalized video content.",
+                uses: "AI avatars for content creation, personalized videos, and marketing.",
+                color: "#6C5CE7"
+            },
+            {
+                id: 13,
+                name: "D-ID",
+                category: "video",
+                icon: "fas fa-smile",
+                description: "Facial animation technology that brings images to life with speech.",
+                uses: "Facial animation, talking AI videos, digital humans, and interactive media.",
+                color: "#0984E3"
+            },
+            {
+                id: 14,
+                name: "Midjourney",
+                category: "image",
+                icon: "fas fa-palette",
+                description: "Advanced AI image generation from text prompts with artistic styles.",
+                uses: "Thumbnails, art, concept images, illustrations, and creative visuals.",
+                color: "#1B1B1B"
+            },
+            {
+                id: 15,
+                name: "DALL·E",
+                category: "image",
+                icon: "fas fa-paint-brush",
+                description: "OpenAI's image generation model for creating diverse visual content.",
+                uses: "AI-generated images, product mockups, illustrations, and creative visuals.",
+                color: "#10A37F"
+            },
+            {
+                id: 16,
+                name: "Canva AI",
+                category: "image",
+                icon: "fas fa-object-group",
+                description: "Design platform with integrated AI tools for creating visuals.",
+                uses: "Thumbnails, posters, social media graphics, presentations, and marketing materials.",
+                color: "#00C4CC"
+            },
+            {
+                id: 17,
+                name: "Grammarly",
+                category: "writing",
+                icon: "fas fa-spell-check",
+                description: "AI writing assistant for grammar checking and style improvement.",
+                uses: "Grammar check, English improvement, tone adjustment, and plagiarism detection.",
+                color: "#15C39A"
+            },
+            {
+                id: 18,
+                name: "QuillBot",
+                category: "writing",
+                icon: "fas fa-paragraph",
+                description: "AI paraphrasing tool for rewriting and improving text content.",
+                uses: "Paraphrasing, rewriting text, summarizing, grammar checking, and translation.",
+                color: "#0524C2"
+            },
+            {
+                id: 19,
+                name: "Perplexity AI",
+                category: "productivity",
+                icon: "fas fa-search",
+                description: "AI research assistant with citation capabilities for accurate information.",
+                uses: "Research, references, summaries, fact-checking, and learning assistance.",
+                color: "#10A37F"
+            }
+        ];
+        
+        // DOM Elements
+        const toolsGrid = document.getElementById('toolsGrid');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const userProfile = document.getElementById('userProfile');
+        const userAvatar = document.getElementById('userAvatar');
+        const userName = document.getElementById('userName');
+        const aiOutputContainer = document.getElementById('aiOutputContainer');
+        const aiOutput = document.getElementById('aiOutput');
+        const aiLoading = document.getElementById('aiLoading');
+        const userInput = document.getElementById('userInput');
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load user data from localStorage
+            loadUserData();
+            
+            // Render all tools initially
+            renderTools(aiTools);
+            
+            // Setup category filter
+            setupCategoryFilter();
+            
+            // Setup user profile dropdown
+            setupUserProfile();
+            
+            // Setup AI assistant
+            setupAIAssistant();
+        });
+        
+        // Load user data from localStorage
+        function loadUserData() {
+            const userProfileData = localStorage.getItem('userProfile');
+            if (userProfileData) {
+                const user = JSON.parse(userProfileData);
+                
+                // Set user name
+                const firstName = user.firstName || 'User';
+                const lastName = user.lastName || '';
+                userName.textContent = `${firstName} ${lastName}`.trim();
+                
+                // Set user avatar initials
+                const initials = (firstName.charAt(0) + (lastName ? lastName.charAt(0) : '')).toUpperCase();
+                userAvatar.textContent = initials || 'U';
+                
+                // Set avatar color based on name
+                const colors = ['#6a11cb', '#2575fc', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3'];
+                const colorIndex = (firstName.charCodeAt(0) + (lastName ? lastName.charCodeAt(0) : 0)) % colors.length;
+                userAvatar.style.backgroundColor = colors[colorIndex];
+            }
+        }
+        
+        // Render tools to the grid
+        function renderTools(tools) {
+            toolsGrid.innerHTML = '';
+            
+            tools.forEach(tool => {
+                const toolCard = document.createElement('div');
+                toolCard.className = 'tool-card';
+                toolCard.setAttribute('data-category', tool.category);
+                
+                toolCard.innerHTML = `
+                    <div class="tool-number">${tool.id}</div>
+                    <div class="tool-icon" style="color: ${tool.color}">
+                        <i class="${tool.icon}"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3 class="tool-title">
+                            ${tool.name}
+                            <i class="fas fa-external-link-alt" style="font-size: 1rem; color: #999;"></i>
+                        </h3>
+                        <div class="tool-category">${getCategoryName(tool.category)}</div>
+                        <p class="tool-description">${tool.description}</p>
+                        <div class="tool-uses">
+                            <h4><i class="fas fa-lightbulb"></i> Primary Uses:</h4>
+                            <p>${tool.uses}</p>
+                        </div>
+                        <a href="#" class="tool-link" onclick="searchTool('${tool.name}')">
+                            Explore Tool <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                `;
+                
+                toolsGrid.appendChild(toolCard);
+            });
+        }
+        
+        // Get category display name
+        function getCategoryName(category) {
+            const categoryNames = {
+                'writing': 'Writing & Content',
+                'voice': 'Voice & Audio',
+                'video': 'Video Creation',
+                'image': 'Image & Design',
+                'productivity': 'Productivity'
+            };
+            return categoryNames[category] || category;
+        }
+        
+        // Setup category filter
+        function setupCategoryFilter() {
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get selected category
+                    const category = this.getAttribute('data-category');
+                    
+                    // Filter tools
+                    let filteredTools;
+                    if (category === 'all') {
+                        filteredTools = aiTools;
+                    } else {
+                        filteredTools = aiTools.filter(tool => tool.category === category);
+                    }
+                    
+                    // Render filtered tools
+                    renderTools(filteredTools);
+                });
+            });
+        }
+        
+        // Setup user profile dropdown
+        function setupUserProfile() {
+            userProfile.addEventListener('click', function() {
+                // In a real app, this would show a dropdown menu
+                // For now, we'll just show an alert with user info
+                const userProfileData = localStorage.getItem('userProfile');
+                if (userProfileData) {
+                    const user = JSON.parse(userProfileData);
+                    const skills = user.skills ? user.skills.split(',') : [];
+                    
+                    alert(`User Profile:\n\nName: ${user.firstName} ${user.lastName}\nEmail: ${user.email}\nRole: ${user.role}\nSkills: ${skills.length > 0 ? skills.join(', ') : 'No skills added'}`);
+                } else {
+                    alert('No user profile data found. Please create a profile first.');
+                    window.location.href = 'create-profile.html';
+                }
+            });
+        }
+        
+        // Setup AI Assistant
+        function setupAIAssistant() {
+            // Allow Enter key to send message (Shift+Enter for new line)
+            userInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendToAI();
+                }
+            });
+            
+            // Auto-resize textarea
+            userInput.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+            });
+        }
+        
+        // AI Assistant Function
+        async function sendToAI() {
+            const input = userInput.value.trim();
+            
+            if (!input) {
+                alert("Please type a question for the AI assistant.");
+                userInput.focus();
+                return;
+            }
+            
+            // Show loading indicator
+            aiLoading.style.display = 'block';
+            aiOutputContainer.style.display = 'none';
+            
+            // For demo purposes - simulate API response
+            // In a real application, you would use the OpenAI API
+            setTimeout(() => {
+                const response = generateAIResponse(input);
+                
+                // Hide loading indicator
+                aiLoading.style.display = 'none';
+                
+                // Show response
+                aiOutput.innerHTML = response;
+                aiOutputContainer.style.display = 'block';
+                
+                // Scroll to response
+                aiOutputContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 1500);
+            
+            // If you have a real OpenAI API key, uncomment and use this code:
+            /*
+            try {
+                const response = await fetch("https://api.openai.com/v1/chat/completions", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer YOUR_API_KEY_HERE"
+                    },
+                    body: JSON.stringify({
+                        model: "gpt-3.5-turbo",
+                        messages: [
+                            {
+                                "role": "system", 
+                                "content": "You are an AI assistant specialized in AI tools and technologies. Provide helpful, detailed information about AI tools, their uses, and recommendations. Keep responses clear and practical."
+                            },
+                            {"role": "user", "content": input}
+                        ],
+                        max_tokens: 500,
+                        temperature: 0.7
+                    })
+                });
+
+                const data = await response.json();
+                
+                // Hide loading indicator
+                aiLoading.style.display = 'none';
+                
+                // Show response
+                aiOutput.innerText = data.choices[0].message.content;
+                aiOutputContainer.style.display = 'block';
+                
+                // Scroll to response
+                aiOutputContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+            } catch (error) {
+                console.error('Error:', error);
+                aiLoading.style.display = 'none';
+                aiOutput.innerHTML = "<p style='color: #ff6b6b;'>Sorry, I encountered an error. Please try again later or check your API key configuration.</p>";
+                aiOutputContainer.style.display = 'block';
+            }
+            */
+        }
+        
+        // Generate demo AI response
+        function generateAIResponse(input) {
+            const lowerInput = input.toLowerCase();
+            
+            // Predefined responses for common questions
+            if (lowerInput.includes('youtube') || lowerInput.includes('thumbnail')) {
+                return `
+                    <p><strong>For YouTube thumbnails, I recommend:</strong></p>
+                    <ul>
+                        <li><strong>Canva AI</strong> - Great for beginners with templates</li>
+                        <li><strong>Midjourney</strong> - For artistic, unique thumbnails</li>
+                        <li><strong>DALL·E</strong> - For generating custom images from text</li>
+                    </ul>
+                    <p>For a complete YouTube workflow, consider using:</p>
+                    <ol>
+                        <li><strong>ChatGPT</strong> for script writing</li>
+                        <li><strong>ElevenLabs</strong> for voiceover</li>
+                        <li><strong>Pictory AI</strong> for video editing</li>
+                        <li><strong>Canva AI</strong> for thumbnails</li>
+                    </ol>
+                `;
+            } else if (lowerInput.includes('voice') || lowerInput.includes('audio')) {
+                return `
+                    <p><strong>Top AI voice tools:</strong></p>
+                    <ul>
+                        <li><strong>ElevenLabs</strong> - Best for natural, human-like voices</li>
+                        <li><strong>Murf AI</strong> - Professional voiceovers with emotion control</li>
+                        <li><strong>Play.ht</strong> - Excellent for multilingual content</li>
+                        <li><strong>Lovo.ai</strong> - Great for YouTube creators</li>
+                    </ul>
+                    <p><strong>Use cases:</strong></p>
+                    <ul>
+                        <li>Audiobooks → ElevenLabs</li>
+                        <li>YouTube videos → Lovo.ai or Murf AI</li>
+                        <li>Multilingual projects → Play.ht</li>
+                        <li>Podcasts → Murf AI</li>
+                    </ul>
+                `;
+            } else if (lowerInput.includes('video') || lowerInput.includes('edit')) {
+                return `
+                    <p><strong>AI video creation tools:</strong></p>
+                    <ul>
+                        <li><strong>Pictory AI</strong> - Best for converting scripts to videos</li>
+                        <li><strong>InVideo AI</strong> - Great for social media content</li>
+                        <li><strong>Synthesia</strong> - Perfect for AI avatar videos</li>
+                        <li><strong>HeyGen</strong> - Good for personalized video content</li>
+                    </ul>
+                    <p><strong>Recommendation based on needs:</strong></p>
+                    <ul>
+                        <li>Script to video → Pictory AI</li>
+                        <li>Talking avatar videos → Synthesia</li>
+                        <li>Quick social media videos → InVideo AI</li>
+                        <li>Professional presentations → HeyGen</li>
+                    </ul>
+                `;
+            } else if (lowerInput.includes('write') || lowerInput.includes('content')) {
+                return `
+                    <p><strong>AI writing tools:</strong></p>
+                    <ul>
+                        <li><strong>ChatGPT</strong> - Most versatile for all writing needs</li>
+                        <li><strong>Jasper AI</strong> - Best for marketing and business content</li>
+                        <li><strong>Copy.ai</strong> - Great for short-form content and ads</li>
+                        <li><strong>Grammarly</strong> - Essential for editing and proofreading</li>
+                    </ul>
+                    <p><strong>Specific use cases:</strong></p>
+                    <ul>
+                        <li>Blog posts → ChatGPT or Jasper AI</li>
+                        <li>Social media → Copy.ai</li>
+                        <li>Emails → Grammarly + ChatGPT</li>
+                        <li>Academic writing → Notion AI + Grammarly</li>
+                    </ul>
+                `;
+            } else if (lowerInput.includes('free') || lowerInput.includes('cheap')) {
+                return `
+                    <p><strong>Free or affordable AI tools:</strong></p>
+                    <ul>
+                        <li><strong>ChatGPT</strong> - Free tier available with limitations</li>
+                        <li><strong>Canva AI</strong> - Free plan with basic AI features</li>
+                        <li><strong>Grammarly</strong> - Free browser extension</li>
+                        <li><strong>QuillBot</strong> - Free paraphrasing tool</li>
+                        <li><strong>Play.ht</strong> - Free tier with limited minutes</li>
+                    </ul>
+                    <p><strong>Tips for saving money:</strong></p>
+                    <ol>
+                        <li>Use free tiers for testing before upgrading</li>
+                        <li>Look for educational discounts if you're a student</li>
+                        <li>Annual plans are usually cheaper than monthly</li>
+                        <li>Some tools offer lifetime deals on AppSumo</li>
+                    </ol>
+                `;
+            } else if (lowerInput.includes('best') || lowerInput.includes('recommend')) {
+                return `
+                    <p><strong>My AI tool recommendations:</strong></p>
+                    <ul>
+                        <li><strong>Overall best</strong> → ChatGPT (most versatile)</li>
+                        <li><strong>Best for beginners</strong> → Canva AI (easiest to use)</li>
+                        <li><strong>Best for professionals</strong> → Midjourney + ElevenLabs + Pictory AI (premium quality)</li>
+                        <li><strong>Best value</strong> → Notion AI (multiple tools in one)</li>
+                    </ul>
+                    <p><strong>Based on your profile, I'd suggest:</strong></p>
+                    <ol>
+                        <li>Start with <strong>ChatGPT</strong> and <strong>Canva AI</strong> to learn the basics</li>
+                        <li>Add <strong>Grammarly</strong> for writing improvement</li>
+                        <li>Try <strong>ElevenLabs</strong> for voice projects</li>
+                        <li>Experiment with <strong>Midjourney</strong> for creative images</li>
+                    </ol>
+                `;
+            } else {
+                // Generic helpful response
+                return `
+                    <p>Thanks for your question about AI tools! Here's what I can help you with:</p>
+                    <ul>
+                        <li><strong>Tool recommendations</strong> - Ask which AI tool is best for specific tasks</li>
+                        <li><strong>Use cases</strong> - Learn how to use different AI tools effectively</li>
+                        <li><strong>Comparisons</strong> - Compare different AI tools for your needs</li>
+                        <li><strong>Workflows</strong> - Get advice on combining multiple AI tools</li>
+                    </ul>
+                    <p><strong>Try asking:</strong></p>
+                    <ul>
+                        <li>"What's the best AI tool for YouTube thumbnails?"</li>
+                        <li>"How can I use AI for voiceovers?"</li>
+                        <li:"Which AI writing tool should I use?"</li>
+                        <li>"What's a good AI video editing workflow?"</li>
+                    </ul>
+                `;
+            }
+        }
+        
+        // Clear AI chat
+        function clearChat() {
+            userInput.value = '';
+            aiOutputContainer.style.display = 'none';
+            aiLoading.style.display = 'none';
+            userInput.style.height = 'auto';
+            userInput.focus();
+        }
+        
+        // Show example questions
+        function showExampleQuestions() {
+            const examples = [
+                "What's the best AI tool for creating YouTube videos?",
+                "How can I use AI for voiceovers on my podcast?",
+                "Which AI writing tool is best for blog posts?",
+                "What's a good free AI tool for image generation?",
+                "How do I combine multiple AI tools for content creation?",
+                "Which AI tool is best for academic research?",
+                "What's the difference between ChatGPT and Jasper AI?",
+                "How can I use AI to improve my social media content?"
+            ];
+            
+            const randomExample = examples[Math.floor(Math.random() * examples.length)];
+            userInput.value = randomExample;
+            userInput.style.height = 'auto';
+            userInput.style.height = (userInput.scrollHeight) + 'px';
+            userInput.focus();
+        }
+        
+        // Search tool function (simulate opening tool website)
+        function searchTool(toolName) {
+            // In a real app, this would redirect to the tool's website
+            // For now, we'll simulate with a search
+            const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(toolName + ' AI tool')}`;
+            window.open(searchUrl, '_blank');
+            return false;
+        }
+        
+        // Add hover effects to tool cards
+        document.addEventListener('mouseover', function(e) {
+            if (e.target.closest('.tool-card')) {
+                const card = e.target.closest('.tool-card');
+                const icon = card.querySelector('.tool-icon i');
+                
+                // Add subtle animation to icon
+                icon.style.transform = 'scale(1.1)';
+                icon.style.transition = 'transform 0.3s ease';
+            }
+        });
+        
+        document.addEventListener('mouseout', function(e) {
+            if (e.target.closest('.tool-card')) {
+                const card = e.target.closest('.tool-card');
+                const icon = card.querySelector('.tool-icon i');
+                
+                // Reset icon animation
+                icon.style.transform = 'scale(1)';
+            }
+        });
+    </script>
+</body>
+</html>
