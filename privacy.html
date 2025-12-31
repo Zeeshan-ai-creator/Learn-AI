@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | LearnAI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary: #34a853;
+            --light: #f5f7fb;
+            --white: #ffffff;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #e1e5eb;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), #ffd700);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .date-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .intro {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-light);
+            text-align: center;
+        }
+        
+        .intro strong {
+            color: var(--primary);
+        }
+        
+        .policy-section {
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .policy-section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        h2 .icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(26, 115, 232, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+        
+        p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text);
+        }
+        
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .highlight-box strong {
+            color: var(--primary-dark);
+        }
+        
+        .no-data-list {
+            margin: 15px 0 15px 25px;
+        }
+        
+        .no-data-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .no-data-list li::before {
+            content: "✕";
+            position: absolute;
+            left: 0;
+            color: #d93025;
+            font-weight: bold;
+        }
+        
+        .contact-card {
+            background: linear-gradient(to right, #f8f9ff, #f0f7ff);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-details h3 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .contact-details a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .contact-details a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #f8f9fa;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+        
+        .footer-logo {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+                border-radius: 12px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .contact-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .date-badge {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                margin: 0;
+                border-radius: 0;
+            }
+        }
+        
+        /* Animation for sections */
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 100;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Privacy Policy</h1>
+        <p class="subtitle">Transparent. Simple. Respectful of your privacy.</p>
+        <div class="date-badge">
+            <i class="fas fa-calendar-alt"></i>
+            Last Updated: 01 January 2026
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="intro">
+            <p>Welcome to <strong>LearnAI</strong>. Your privacy is important to us. 
+            This application is designed to be used by anyone for learning, 
+            content creation, and other lawful purposes.</p>
+        </div>
+
+        <div class="policy-section fade-in">
+            <h2><span class="icon"><i class="fas fa-bullseye"></i></span> 1. Purpose of the App</h2>
+            <p>LearnAI is an AI-based application created to help users learn about artificial intelligence and use AI tools for content creation, education, and personal or professional needs.</p>
+            <p>Anyone can use this app freely according to their requirements without compromising their privacy.</p>
+        </div>
+
+        <div class="policy-section fade-in">
+            <h2><span class="icon"><i class="fas fa-user-shield"></i></span> 2. No Personal Data Collection</h2>
+            <div class="highlight-box">
+                <p>We do <strong>not collect, store, or share</strong> any personal data. LearnAI does not require users to provide personal information to use the app.</p>
+            </div>
+            <p>This includes but is not limited to:</p>
+            <ul class="no-data-list">
+                <li>Location data or GPS information</li>
+                <li>Payment information or financial data</li>
+                <li>Contact lists or address book information</li>
+                <li>Photos, videos, or audio recordings</li>
+            </ul>
+        </div>
+
+        <div class="policy-section fade-in">
+            <h2><span class="icon"><i class="fas fa-chart-line"></i></span> 3. Data Usage</h2>
+            <p>LearnAI does not track users, does not sell data, and does not use personal information for advertising or marketing purposes.</p>
+            <p>The app is intended only for exploring and using AI features in a privacy-respecting manner. Any data processed by AI tools is handled temporarily and not stored.</p>
+        </div>
+
+        <div class="policy-section fade-in">
+            <h2><span class="icon"><i class="fas fa-external-link-alt"></i></span> 4. Third-Party Services</h2>
+            <p>This app may use basic technical services (such as hosting infrastructure) to function properly, but no personal user data is shared or stored with third parties.</p>
+            <p>We select service providers who prioritize data security and privacy protection.</p>
+        </div>
+
+        <div class="policy-section fade-in">
+            <h2><span class="icon"><i class="fas fa-child"></i></span> 5. Children's Privacy</h2>
+            <p>LearnAI is safe for general use. However, children should use the app under parental guidance as it may generate content that requires supervision.</p>
+            <p>We do not knowingly collect any data from children under 13 years of age.</p>
+        </div>
+
+        <div class="policy-section fade-in">
+            <h2><span class="icon"><i class="fas fa-sync-alt"></i></span> 6. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy if needed to reflect changes in our practices or for other operational, legal, or regulatory reasons.</p>
+            <p>Any changes will be reflected on this page with an updated "Last Updated" date. We encourage you to review this policy periodically.</p>
+        </div>
+
+        <div class="policy-section fade-in">
+            <h2><span class="icon"><i class="fas fa-envelope"></i></span> 7. Contact Information</h2>
+            <p>If you have any questions, concerns, or feedback about this Privacy Policy or our privacy practices, please reach out to us:</p>
+            
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div class="contact-details">
+                    <h3>LearnAI Support Team</h3>
+                    <p><strong>Email:</strong> <a href="mailto:sthunter350@gmail.com">sthunter350@gmail.com</a></p>
+                    <p><strong>Response Time:</strong> We aim to respond within 24 hours</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo">LearnAI</div>
+        <p>© 2025 LearnAI. All rights reserved.</p>
+        <p>Privacy-first AI learning platform</p>
+    </footer>
+</div>
+
+<div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Back to top button
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Add fade-in animation to sections on scroll
+        const sections = document.querySelectorAll('.policy-section');
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        sections.forEach(section => {
+            // Set initial state
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(10px)';
+            
+            // Observe for animation
+            observer.observe(section);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Print button functionality
+        const printButton = document.createElement('button');
+        printButton.innerHTML = '<i class="fas fa-print"></i>';
+        printButton.title = 'Print Privacy Policy';
+        printButton.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(52, 168, 83, 0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        `;
+        
+        printButton.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1)';
+            this.style.boxShadow = '0 6px 15px rgba(52, 168, 83, 0.4)';
+        });
+        
+        printButton.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.boxShadow = '0 4px 12px rgba(52, 168, 83, 0.3)';
+        });
+        
+        printButton.addEventListener('click', function() {
+            window.print();
+        });
+        
+        document.body.appendChild(printButton);
+    });
+</script>
+
+</body>
+</html>
